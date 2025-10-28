@@ -228,7 +228,7 @@ func (w *Wallet) RawSendV2(
 
 	for ; time.Since(t) < waitingConfirmation; time.Sleep(waitingConfirmation / 10) {
 		newSeqno, err := w.blockchain.GetSeqno(ctx, w.address)
-		if err == nil {
+		if err != nil {
 			continue
 		}
 		if newSeqno > seqno {
